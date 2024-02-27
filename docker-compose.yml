@@ -1,0 +1,19 @@
+version: "3.9"
+services:
+  web:
+    build: .
+    ports:
+      - 3000:3000
+    depends_on:
+      - postgres
+    links:
+      - postgres
+    build:
+      context: .
+    volumes:
+      - .:/app
+  postgres:
+    image: postgres:12.3
+    environment:
+      POSTGRES_PASSWORD: "postgres"
+      POSTGRES_USERNAME: "postgres"
