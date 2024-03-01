@@ -1,4 +1,4 @@
-FROM ruby:3.2 as builder
+FROM ruby:3.2 as prod
 
 WORKDIR /app
 COPY Gemfile .
@@ -7,7 +7,6 @@ RUN bundler install
 COPY . .
 EXPOSE 3000
 
-FROM ruby:3.2 as final
-WORKDIR /app
-COPY --from=builder /app .
-CMD ["./k8_experience", "bundle", "exec", "rails", "server", "-p", "3000", "-b", "0.0.0.0"]
+FROM ruby:3.2 as dev
+
+EXPOSE 3001
