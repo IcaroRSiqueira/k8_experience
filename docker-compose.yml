@@ -10,6 +10,7 @@ services:
     working_dir: /app
     build:
       context: .
+    entrypoint: "sh docker-entrypoint.sh"
     volumes:
       - .:/app
   postgres:
